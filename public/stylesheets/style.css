@@ -11,8 +11,34 @@
 
 #form-routing {
   position: absolute;
+  z-index: 2;
+  max-width: 400px;
+}
+
+#fuel-list {
+  position: absolute;
+  z-index: 2;
+  max-width: 400px;
+}
+
+.fuel-list {
   top: 150px;
   left: 50px;
-  z-index: 2;
-  max-width: 250px;
+}
+
+
+.form-routing {
+  top: 150px;
+  left: 50px;
+}
+
+.route-list {
+  top: 150px;
+  left: 50px;
+}
+
+#route-list {
+  position: absolute;
+  z-index: 3;
+  width: 300px;
 }

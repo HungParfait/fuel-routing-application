@@ -18,19 +18,16 @@
 </head>
 
 <body>
-
     <div id="map"></div>
-
     
-
-    <div class="route-list bg-white" id="route-list" draggable="true">
-        <div class="font-semibold capitalize bg-blue-600 py-3 px-2 rounded-t-md ">
+    <div id="fuel-list" class="fuel-list bg-white" draggable="true">
+        <div class="font-semibold capitalize bg-blue-600 py-3 px-2 rounded-t-md">
             <p class="text-center text-white">
-              Lộ trình
+              Danh sách cây xăng
             </p>
-        </div>
-        
-        <p class="mt-3 px-3">
+          </div>
+
+          <p class="text-end mt-3 px-3">
             <a href='/'
                class="rounded-full bg-blue-500 hover:bg-blue-600 px-4 py-2 text-white text-sm font-semibold " 
                 >
@@ -38,36 +35,36 @@
             </a>
         </p>
 
-        <p class="px-3 pt-2">
-            <span class="font-semibold">Các chặng:</span>
+        <p class="my-2 px-3">
+            <span class="font-semibold">Vị trí của bạn:</span> <%= location %>
         </p>
-        
-        <% if(!line.string){ %>
-            <p class="font-semibold px-3 py-3">
-                No data
-            </p>
-          <% } else{ %>  
-            <div class="px-3 py-4 route-list-point h-60 overflow-y-scroll">
-                <%  const name = line.string.split(',');
-                    for (item of name) { %>
-                    <div class="bg-white rounded-lg py-2" id="" >
-                        <p class="">
-                            <%= item %>
-                        </p>
-                        <hr class="mt-3">
-                    </div>
-                    <% } %>
-            </div>
-         <% } %>
-    </div>
 
+        <div class="px-3 py-4">
+            <% for (item of queryResult) { %>
+                <div class="bg-white rounded-lg py-2" id="" >
+                    <p class="">
+                        <span class="font-semibold">Tên cây xăng:</span> <%= item.name %>
+                    </p>
+                    <p class="text-end mt-3">
+                        <a href='/route?departLocation=<%= location %>&destLocation=<%= item.lat %>,<%= item.long %>'
+                           class="rounded-full bg-blue-500 hover:bg-blue-600 px-5 py-2 text-white text-sm font-semibold " 
+                            >
+                            Chỉ đường
+                        </a>
+                    </p>
+                    <hr class="mt-3">
+                </div>
+                <% } 
+            %>
+        </div>
+        
+    </div>
 </body>
 <script>
-    const departLocation = <%- JSON.stringify(departLocation) %>;
-    const destLocation = <%- JSON.stringify(destLocation) %>;
-    const line = <%- JSON.stringify(line) %>;
+    const yourLocation = <%- JSON.stringify(location) %>;
+    const fuel = <%- JSON.stringify(queryResult) %>;
 </script>
 <script src="/javascripts/map.js"></script>
-<script src="/javascripts/route.js"></script>
+<script src="/javascripts/fuel.js"></script>
 
 </html>
